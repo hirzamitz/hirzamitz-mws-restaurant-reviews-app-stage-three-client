@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- add meta tags for charset, http-equiv, and viewport --> 
+  <title>Restaurant Reviews - Details</title>
+  <meta name="Description" content="Restaurant address, hours, and reviews">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- add favicon, a manifest, mobile meta tags and theme-color -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Restaurant Review App">
+  <link rel="apple-touch-icon" href="/img/icons/Icon-512.png">
+  <meta name="Description" content="Offline First Restaurant Reviews App">
+  <meta name="theme-color" content="#041263">
+  <!-- Normalize.css for better cross-browser consistency -->
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="preconnect" href="https://maps.googleapis.com">
+  <title>Restaurant Info</title>
+</head>
+
+<body class="inside">
+  <!-- Beginning header -->
+  <header>
+    <!-- show a skip link to allow user to jump to the filter results section --> 
+    <a href="#restaurant-name" class="skip-link">Skip to restaurant details</a> 
+    <!-- Beginning nav -->
+    <nav>
+      <h1><a href="/"><img id="webIcon" src="img/icons/Icon.svg" alt="restaurant reviews icon" title="Icon made by https://www.flaticon.com"/>Restaurant Reviews</a></h1>
+    </nav>
+    <!-- Beginning breadcrumb -->
+    <ul id="breadcrumb" >
+      <li><a href="/">Home</a></li>
+    </ul>
+    <!-- End breadcrumb -->
+    <!-- End nav -->
+  </header>
+  <!-- End header -->
+
+  <!-- Beginning main -->
+  <main id="maincontent">
+    <!-- Beginning map -->
+    <section id="map-container">
+      <!-- add an ARIA role of application to the map component --> 
+      <div id="map" role="application"></div>
+    </section>
+    <!-- End map -->
+    <!-- Beginning restaurant -->
+    <section id="restaurant-container">
+      <h1 id="restaurant-name" tabindex=0></h1>
+      <!-- use figure, picture instead of img to support multiple image sizes, add a figure caption --> 
+      <figure id="figure-restaurant-img" class="restaurant-figure">
+        <picture id="picture-restaurant-img">
+        </picture>
+        <figcaption id="restaurant-figCaption"></figcaption>
+      </figure>
+      <p id="restaurant-cuisine"></p>
+      <p id="restaurant-address"></p>
+      <table id="restaurant-hours"></table>
+    </section>
+    <!-- end restaurant -->
+    <!-- Beginning reviews -->
+    <section id="reviews-container">
+      <ul id="reviews-list"></ul>
+    </section>
+    <!-- End reviews -->
+  </main>
+  <!-- End main -->
+  <!-- Displayed when the user clicks on the New Review button -->
+  <div id="reviewModal" class="modal">
+
+    <div id="reviewModalContent">
+        <button id="btnModalClose" class="btnClose">X</button>
+        <div id="reviewForm">
+            <h4 class="reviewModalTitle">New Review</h4>
+            <label>NAME:<input id="review_name" type="text" name="review_name" size=20 pattern=".{3,}" required title="3 characters minimum"></label>
+            <label>RATING:
+              <select id="review_rating" required name="review_rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+              </select>
+            </label>
+            <label>COMMENTS:</label>
+            <textarea id="review_comments" rows="4" cols="42"></textarea>
+            <button id="reviewSubmit">SUBMIT</button>      
+        </div>
+        <div id="reviewStatus" class="hide">
+            <h4 id="modalH4"><img id="modalIcon" src="img/icons/Icon.svg" alt="restaurant reviews icon" title="Icon made by https://www.flaticon.com"/><span id="modalTitle">SUCCESS</span></h4>
+            <label id="reviewModalStatus">New review was saved to the database</label>
+            <button id="reviewOK">OK</button>  
+        </div>
+    </div>
+  </div>
+
+  <!-- Beginning footer -->
+  <footer id="footer">
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+  <!-- End footer -->
+
+  <!-- Beginning scripts -->
+  <!-- Database helper and service worker controller -->
+  <script type="text/javascript" src="js/helper.js"></script>
+  <!-- Restaurant javascript file -->
+  <script type="text/javascript" src="js/restaurant_info.js"></script>
+  <!-- IndexedDB javascript file -->
+  <script type="text/javascript" src="js/idb.js"></script>
+  <!-- Google Maps: add your API key here -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"></script>
+  <!-- End scripts -->
+
+</body>
+
+</html>
